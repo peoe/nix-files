@@ -1,9 +1,4 @@
-{
-    inputs,
-    outputs,
-    vars,
-    ...
-}: {
+{ vars, ... }: {
     imports = [];
 
     networking.hostName = "nixserver";
@@ -14,9 +9,9 @@
         openssh.authorizedKeys.keys = [ vars.sshPublicKeyHomeserver ];
     };
 
-    services.openssh{
+    services.openssh = {
         enable = true;
-        passwordAuthentication = false;
+        settings.PasswordAuthentication = false;
     };
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];

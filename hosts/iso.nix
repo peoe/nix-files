@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ vars, pkgs, ... }: {
     imports = [
         ./../packages/base.nix
         ./../packages/install.nix
