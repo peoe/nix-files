@@ -46,20 +46,41 @@
             # Create filesystems
             echo -e "\n\033[1mCreating filesystems...\033[0m"
             mkfs.fat -F32 -n boot $DISK_BOOT
-            mkfs.btrfs -L nix /dev/mapper/cryptroot
+            mkfs.btrfs -L luks -f /dev/mapper/cryptroot
             # Mandatory pause
             sleep 2
             echo -e "\033[32mFilesystems created successfully.\033[0m"
 
             # Mount points
-            echo -e "\n\033[1mMounting filesystems...\033[0m"
-            mkdir -pv /mnt/{boot,nix,etc/ssh,var/{lib,log}}
+            echo -e "\n\033[1mCreating btrfs subvolumes...\033[0m"
+            mount /dev/disk/by-label/luks
+            btrfs subvolume create /mnt/root
+            btrfs subvolume create /mnt/home
+            btrfs subvolume create /mnt/nix
+            btrfs subvolume create /mnt/persist
+            echo -e "\n\033[1mSubvolumes created successfully.\033[0m"
+
+            # btrfs snapshot of root to later restore
+            echo -e "\n\033[1mCreating btrfs root snapshot...\033[0m"
+            btrfs subvolume snapshot -r /mnt/root /mnt/root-snapshot
+            echo -e "\n\033[1mbtrfs root snapshot created successfully.\033[0m"
+
+            # Mounts
+            echo -e "\n\033[1mMounting volumes...\033[0m"
+            mkdir -pv /mnt/{boot,home,nix,etc/ssh,var/{lib,log}}
             mount /dev/disk/by-label/boot /mnt/boot
-            mount /dev/disk/by-label/nix /mnt/nix
+            mount -o subvol=root,compress=zstd,noatime /dev/disk/by-label/luks /mnt
+            mount -o subvol=nix,compress=zstd,noatime /dev/disk/by-label/luks /mnt/nix
+            mount -o subvol=persist,compress=zstd,noatime /dev/disk/by-label/luks /mnt/persist
+            mount -o subvol=home,compress=zstd,noatime /dev/disk/by-label/luks /mnt/home
+            echo -e "\033[32mVolumes mounted successfully.\033[0m"
+
+            # Persistence dirs
+            echo -e "\n\033[1mCreating persistence directories...\033[0m"
             mkdir -pv /mnt/nix/{secret/initrd,persist/{etc/ssh,var/{lib,log}}}
             chmod 0700 /mnt/nix/secret
             mount -o bind /mnt/nix/persist/var/log /mnt/var/log
-            echo -e "\033[32mFilesystems mounted successfully.\033[0m"
+            echo -e "\n\033[1mCreated persistence directories successfully.\033[0m"
 
             # Generate initrd SSH host key
             echo -e "\n\033[1mGenerating initrd SSH host key and converting to public age key...\033[0m"
