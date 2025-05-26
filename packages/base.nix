@@ -10,6 +10,7 @@
         enable = true;
         settings = {
             PasswordAuthentication = false;
+            PermitEmptyPasswords = "yes";
             PermitRootLogin = "no";
         };
     };
