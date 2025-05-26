@@ -41,7 +41,7 @@
                     })
 
                     proxmox-nixos.nixosModules.proxmox-ve
-                    ./hosts/nixserver.iso
+                    ./hosts/nixserver/config.nix
                 ];
             };
         };
