@@ -7,6 +7,7 @@
     networking.hostName = "nixos-iso";
 
     users.users.nixos = {
+        initialHashedPassword = null;
         hashedPassword = "";
         isNormalUser = true;
         extraGroups = [ "wheel" ];
