@@ -13,6 +13,5 @@
         openssh.authorizedKeys.keys = [ vars.sshPublicKeyHomeserver ];
     };
 
-    security.pam.allowNullPasswords = true;
     security.sudo.wheelNeedsPassword = false;
 }
