@@ -21,8 +21,12 @@
                 system = "x86_64-linux";
                 specialArgs = {inherit inputs outputs vars;};
                 modules = [
-                    (nixpkgs + "nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-                    ./hosts/iso.nix
+                    ({ pkgs, modulesPath, ... }: {
+                        imports = [
+                            (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
+                            ./hosts/iso.nix
+                        ];
+                    })
                 ];
             };
             nixserver = nixpkgs.lib.nixosSystem rec {
