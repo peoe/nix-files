@@ -7,8 +7,7 @@
     networking.hostName = "nixos-iso";
 
     users.users.nixos = {
-        initialHashedPassword = null;
-        hashedPassword = "";
+        initialHashedPassword = "";
         isNormalUser = true;
         extraGroups = [ "wheel" ];
         openssh.authorizedKeys.keys = [ vars.sshPublicKeyHomeserver ];
