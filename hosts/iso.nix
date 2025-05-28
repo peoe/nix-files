@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ lib, vars, ... }: {
     imports = [
         ./../packages/base.nix
         ./../packages/install.nix
@@ -8,6 +8,7 @@
 
     users.mutableUsers = false;
     users.users.nixos = {
+        initialHashedPassword = lib.mkForce null;
         initialPassword = "password";
         isNormalUser = true;
         extraGroups = [ "wheel" ];
