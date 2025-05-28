@@ -6,6 +6,7 @@
 
     networking.hostName = "nixos-iso";
 
+    users.mutableUsers = false;
     users.users.nixos = {
         initialPassword = "password";
         isNormalUser = true;
