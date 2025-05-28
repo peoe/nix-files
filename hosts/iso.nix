@@ -12,5 +12,5 @@
     #     extraGroups = [ "wheel" ];
     #     openssh.authorizedKeys.keys = [ vars.sshPublicKeyHomeserver ];
     # };
-    users.users.root.openssh.authorizedKeys.keys = vars.sshPublicKeyHomeserver;
+    users.users.root.openssh.authorizedKeys.keys = [vars.sshPublicKeyHomeserver];
 }
