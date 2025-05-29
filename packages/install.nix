@@ -9,8 +9,8 @@
             git clone https://github.com/peoe/nix-files.git
 
             # format, set luks, mount
-            sudo nix run github:nix-community/disko/latest -- --mode destroy,format,mount hosts/nixserver/disk-config.nix --yes-wipe-all-disks
-            sudo mkdir -pv /mnt/nix/{secret/initrd}
+            sudo nix run github:nix-community/disko/latest -- --mode destroy,format,mount ~/nix-files/hosts/nixserver/disk-config.nix --yes-wipe-all-disks
+            sudo mkdir -pv /mnt/nix/secret/initrd
             sudo mkdir -pv /mnt/persist/etc/ssh
             sudo chmod 0700 /mnt/nix/secret
 
