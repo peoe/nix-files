@@ -3,7 +3,10 @@
         enable = true;
         enableCompletions = true;
         autocd = true;
-        autosuggestions.enable = true;
+        autosuggestion = {
+            enable = true;
+            strategy = [ "history" "completion" ];
+        };
         completionInit = ''
         autoload -Uz compinit && compinit
         autoload -Uz bashcompinit && bashcompinit
