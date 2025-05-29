@@ -16,7 +16,6 @@
         hashedPasswordFile = config.sops.secrets.userpasswd.path;
         extraGroups = [ "wheel" ];
         openssh.authorizedKeys.keys = [ vars.sshPublicKeyHomeserver ];
-        shell = pkgs.zsh;
     };
 
     home-manager = {
