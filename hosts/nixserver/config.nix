@@ -27,7 +27,6 @@
     };
 
     # boot remote unlock
-    # boot.kernelParams = [ "ip=localaddr::gateway:mask:hostname:interface:off:1.1.1.1:8.8.8.8:" ];
     boot.initrd = {
         availableKernelModules = ["r8169"];
         luks.forceLuksSupportInInitrd = true;
