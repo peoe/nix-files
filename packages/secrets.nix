@@ -1,4 +1,7 @@
-{ ... }: {
+{ inputs, ... }: {
+    imports = [
+        inputs.sops-nix.nixosModules.sops
+    ];
     sops = {
         defaultSopsFile = ./../../secrets/secrets.yaml;
         age.sshKeyPaths = [ "/nix/secrets/initrd/ssh_host_key" ];

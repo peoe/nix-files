@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
     environment.defaultPackages = with pkgs; [
         bat
         btop
