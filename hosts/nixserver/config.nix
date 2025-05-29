@@ -24,7 +24,7 @@
         ssh = {
             enable = true;
             shell = "/bin/cryptsetup-askpass";
-            authorizedKeys = config.users.users.albert.openssh.authorizedKeys.keys;
+            authorizedKeys = config.users.users.alfred.openssh.authorizedKeys.keys;
             hostKeys = [];
         };
     };
