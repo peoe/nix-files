@@ -28,13 +28,17 @@
 
     # boot remote unlock
     # boot.kernelParams = [ "ip=localaddr::gateway:mask:hostname:interface:off:1.1.1.1:8.8.8.8:" ];
-    boot.initrd.network = {
-        enable = true;
-        ssh = {
+    boot.initrd = {
+        availableKernelModules = ["r8169"];
+        network = {
             enable = true;
-            shell = "/bin/cryptsetup-askpass";
-            authorizedKeys = config.users.users.alfred.openssh.authorizedKeys.keys;
-            hostKeys = [ "/nix/secret/initrd/ssh_host_ed25519_key" ];
+            flushBeforeStage2 = true;
+            ssh = {
+                enable = true;
+                shell = "/bin/cryptsetup-askpass";
+                authorizedKeys = config.users.users.alfred.openssh.authorizedKeys.keys;
+                hostKeys = [ "/nix/secret/initrd/ssh_host_ed25519_key" ];
+            };
         };
     };
 
