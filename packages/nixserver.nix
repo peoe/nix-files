@@ -5,6 +5,5 @@
         mergerfs
         snapraid
         zoxide
-        zsh
     ];
 }
