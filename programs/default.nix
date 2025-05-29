@@ -1,6 +1,6 @@
 {
     imports = [
-        ./nvim/config.nix
+        ./_packages.nix
         # ./zsh.nix
     ];
 }
