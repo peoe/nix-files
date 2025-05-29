@@ -4,6 +4,7 @@
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         # impermanence.url = "github:nix-community/impermanence";
+        nvf.url = "github:notashelf/nvf";
 
         disko = {
             url = "github:nix-community/disko/latest";
@@ -12,10 +13,6 @@
         home-manager = {
             url = "github:nix-community/home-manager/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
-        };
-        nvf = {
-            url = "github:notashelf/nvf";
-            inputs.nixpkgs.follow = "nixpkgs";
         };
         sops-nix = {
             url = "github:Mic92/sops-nix";
