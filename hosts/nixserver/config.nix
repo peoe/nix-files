@@ -34,7 +34,7 @@
             enable = true;
             shell = "/bin/cryptsetup-askpass";
             authorizedKeys = config.users.users.alfred.openssh.authorizedKeys.keys;
-            hostKeys = [];
+            hostKeys = [ "/nix/secret/initrd/ssh_host_ed25519_key" ];
         };
     };
 
