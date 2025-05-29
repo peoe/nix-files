@@ -12,9 +12,9 @@
             #!/usr/bin/env bash
 
             # Define disks
-            DISK="/dev/asdf"
-            DISK_BOOT="/dev/asdf1"
-            DISK_NIX="/dev/asdf2"
+            DISK="/dev/sda"
+            DISK_BOOT="/dev/sda1"
+            DISK_NIX="/dev/sda2"
 
             # Print current disk layout
             echo -e "\n\033[1mDisk Layout:\033[0m"
@@ -67,12 +67,11 @@
 
             # Mounts
             echo -e "\n\033[1mMounting volumes...\033[0m"
-            mkdir -pv /mnt/{boot,home,nix,etc/ssh,var/{lib,log}}
+            mkdir -pv /mnt/{boot,nix,etc/ssh,var/{lib,log}}
             mount /dev/disk/by-label/boot /mnt/boot
             mount -o subvol=root,compress=zstd,noatime /dev/disk/by-label/luks /mnt
             mount -o subvol=nix,compress=zstd,noatime /dev/disk/by-label/luks /mnt/nix
             mount -o subvol=persist,compress=zstd,noatime /dev/disk/by-label/luks /mnt/persist
-            mount -o subvol=home,compress=zstd,noatime /dev/disk/by-label/luks /mnt/home
             echo -e "\033[32mVolumes mounted successfully.\033[0m"
 
             # Persistence dirs

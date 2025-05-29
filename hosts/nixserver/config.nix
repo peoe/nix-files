@@ -1,5 +1,7 @@
 { config, pkgs, vars, ... }: {
     imports = [
+        ./disk-config.nix
+
         ./../../packages/base.nix
         ./../../packages/nixserver.nix
         ./../../packages/secrets.nix
@@ -16,7 +18,7 @@
     };
 
     # boot remote unlock
-    boot.kernelParams = [ "ip=localaddr::gateway:mask:hostname:interface:off:1.1.1.1:8.8.8.8:" ];
+    # boot.kernelParams = [ "ip=localaddr::gateway:mask:hostname:interface:off:1.1.1.1:8.8.8.8:" ];
     boot.initrd.network = {
         enable = true;
         ssh = {

@@ -6,13 +6,17 @@
         # impermanence.url = "github:nix-community/impermanence";
         proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
 
+        disko = {
+            url = "github:nix-community/disko/latest";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         sops-nix = {
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
-    outputs = { self, nixpkgs, proxmox-nixos, ... } @ inputs: let
+    outputs = { self, nixpkgs, disko, proxmox-nixos, ... } @ inputs: let
         inherit (self) outputs;
         vars = import ./vars.nix;
     in {
@@ -44,6 +48,7 @@
                         ];
                     })
 
+                    disko.nixosModules.disko
                     proxmox-nixos.nixosModules.proxmox-ve
                     ./hosts/nixserver/config.nix
                 ];
