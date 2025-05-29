@@ -1,4 +1,7 @@
 { pkgs, ... }: {
+    # enable zsh suggestions for system packages
+    environment.pathsToLink = [ "/share/zsh" ];
+
     environment.systemPackages = with pkgs; [
         git
         gptfdisk
