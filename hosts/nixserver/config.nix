@@ -17,6 +17,15 @@
         shell = pkgs.zsh;
     };
 
+    boot.loader = {
+        systemd-boot = {
+            enable = true;
+            configurationLimit = 5;
+        };
+        efi.canTouchEfiVariables = true;
+        timeout = 5;
+    };
+
     # boot remote unlock
     # boot.kernelParams = [ "ip=localaddr::gateway:mask:hostname:interface:off:1.1.1.1:8.8.8.8:" ];
     boot.initrd.network = {
@@ -28,4 +37,6 @@
             hostKeys = [];
         };
     };
+
+    system.stateVersion = "25.11";
 }
