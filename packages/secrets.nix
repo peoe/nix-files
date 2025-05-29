@@ -4,7 +4,7 @@
     ];
     sops = {
         defaultSopsFile = ./../../secrets/secrets.yaml;
-        age.sshKeyPaths = [ "/nix/secrets/initrd/ssh_host_key" ];
+        age.sshKeyPaths = [ "/nix/secret/initrd/ssh_host_ed25519_key" ];
         secrets.userpasswd.neededForUsers = true;
         secrets.userpasswd = {};
         gnupg.sshKeyPaths = [];
