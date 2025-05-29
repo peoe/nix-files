@@ -9,6 +9,14 @@
             url = "github:nix-community/disko/latest";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        home-manager = {
+            url = "github:nix-community/home-manager/release-25.05";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        nvf = {
+            url = "github:notashelf/nvf";
+            inputs.nixpkgs.follow = "nixpkgs";
+        };
         sops-nix = {
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";

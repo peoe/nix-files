@@ -1,5 +1,7 @@
-{ config, pkgs, vars, ... }: {
+{ config, inputs, outputs, pkgs, vars, ... }: {
     imports = [
+        inputs.home-manager.nixosModules.home-manager
+        
         ./disk-config.nix
 
         ./../../packages/base.nix
@@ -15,6 +17,18 @@
         extraGroups = [ "wheel" ];
         openssh.authorizedKeys.keys = [ vars.sshPublicKeyHomeserver ];
         shell = pkgs.zsh;
+    };
+
+    home-manager = {
+        extraSpecialArgs = {inherit inputs outputs vars;};
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.alfred = {
+            home.username = "alfred";
+            imports = [
+                ./../../programs/default.nix
+            ];
+        };
     };
 
     boot.loader = {
