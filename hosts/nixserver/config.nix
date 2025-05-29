@@ -24,7 +24,11 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         users.alfred = {
-            home.username = "alfred";
+            home = {
+                username = "alfred";
+                stateVersion = config.system.stateVersion;
+            };
+
             imports = [
                 ./../../programs/default.nix
             ];
