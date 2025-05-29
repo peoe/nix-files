@@ -4,7 +4,6 @@
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         # impermanence.url = "github:nix-community/impermanence";
-        proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
 
         disko = {
             url = "github:nix-community/disko/latest";
@@ -16,7 +15,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, disko, proxmox-nixos, ... } @ inputs: let
+    outputs = { self, nixpkgs, disko, ... } @ inputs: let
         inherit (self) outputs;
         vars = import ./vars.nix;
     in {
@@ -37,19 +36,7 @@
                 system = "x86_64-linux";
                 specialArgs = {inherit inputs outputs vars;};
                 modules = [
-                    ({ pkgs, lib, ... }: {
-                        services.proxmox-ve = {
-                            enable = true;
-                            ipAddress = "192.168.0.1";
-                        };
-
-                        nixpkgs.overlays = [
-                            proxmox-nixos.overlays.${system}
-                        ];
-                    })
-
                     disko.nixosModules.disko
-                    proxmox-nixos.nixosModules.proxmox-ve
                     ./hosts/nixserver/config.nix
                 ];
             };
