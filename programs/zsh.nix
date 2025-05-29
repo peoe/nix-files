@@ -1,7 +1,10 @@
 {
+    # enable suggestions for system packages
+    environment.pathsToLink = [ "/share/zsh" ];
+
     programs.zsh = {
         enable = true;
-        enableCompletions = true;
+        enableCompletion = true;
         autocd = true;
         autosuggestion = {
             enable = true;
@@ -15,6 +18,9 @@
             size = 10000;
             ignoreAllDups = true;
             };
-        syntaxHighlighting.enable = true;
+        syntaxHighlighting = {
+            enable = true;
+            highlighters = [ "main" "brackets" ];
+        };
     };
 }
