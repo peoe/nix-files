@@ -1,4 +1,4 @@
-{ lib, vars, ... }: {
+{ vars, ... }: {
     imports = [
         ./../packages/base.nix
         ./../packages/install.nix
@@ -7,9 +7,7 @@
     networking.hostName = "nixos-iso";
 
     users.mutableUsers = false;
-    users.users.nixos = {
-        initialHashedPassword = lib.mkForce null;
-        initialPassword = "password";
+    users.users.installer = {
         isNormalUser = true;
         extraGroups = [ "wheel" ];
         openssh.authorizedKeys.keys = [ vars.sshPublicKeyHomeserver ];

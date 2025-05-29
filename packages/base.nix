@@ -13,7 +13,6 @@
             PermitEmptyPasswords = "yes";
             PermitRootLogin = "no";
         };
-        authorizedKeysFiles = ["./../pubkey"];
     };
     systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
 
