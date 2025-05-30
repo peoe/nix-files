@@ -1,4 +1,4 @@
-{ config, inputs, outputs, vars, ... }: {
+{ config, inputs, lib, outputs, vars, ... }: {
     imports = [
         inputs.home-manager.nixosModules.home-manager
         
@@ -60,7 +60,7 @@
         };
 
         # try to ensure that we wait for network device before continuing
-        preLVMCommands = lib.mkBefore 400 "sleep 1";
+        preLVMCommands = lib.mkOrder 400 "sleep 1";
     };
 
     system.stateVersion = "25.05";
