@@ -7,6 +7,8 @@
         ./../../packages/base.nix
         ./../../packages/nixserver.nix
         ./../../packages/secrets.nix
+
+        ./../../services/adguard.nix
     ];
 
     networking.hostName = "nixserver";
