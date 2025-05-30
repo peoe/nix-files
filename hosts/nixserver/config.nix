@@ -1,4 +1,4 @@
-{ config, inputs, outputs, pkgs, vars, ... }: {
+{ config, inputs, outputs, vars, ... }: {
     imports = [
         inputs.home-manager.nixosModules.home-manager
         
@@ -11,7 +11,7 @@
 
     networking.hostName = "nixserver";
 
-    users.users.alfred = {
+    users.users.${vars.userName} = {
         isNormalUser = true;
         hashedPasswordFile = config.sops.secrets.userpasswd.path;
         extraGroups = [ "wheel" ];
@@ -22,9 +22,9 @@
         extraSpecialArgs = {inherit inputs outputs vars;};
         useGlobalPkgs = true;
         useUserPackages = true;
-        users.alfred = {
+        users.${vars.userName} = {
             home = {
-                username = "alfred";
+                username = vars.userName;
                 stateVersion = config.system.stateVersion;
             };
 
