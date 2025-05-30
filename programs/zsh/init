@@ -51,7 +51,7 @@ _prompt () {
     NEWLINE=$'\n'
 
     # insert hostname if connected to ssh
-    [[ $SSH_CONNECTION ]] && local host=" %F{76}@%M%f"
+    [[ $SSH_CONNECTION ]] && local host=" %F{76}%n@%M%f"
 
     print "${NEWLINE}%F{51}%(1V.(%1v).)%f${host} %F{214}%(3~|~/…/%2~|%~)%f${NEWLINE}%F{38} > %f"
 }
