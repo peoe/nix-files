@@ -31,6 +31,9 @@
         shellAliases = {
             ls = "gls -A --group-directories-first --color=auto";
 
+            nrs = "nixos-rebuild switch --flake github:peoe/nix-files#nixserver";
+            nrt = "nixos-rebuild test --flake github:peoe/nix-files#nixserver";
+
             # git aliases
             ga = "git add";
             gc = "git commit -m";
