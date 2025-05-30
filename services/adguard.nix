@@ -3,7 +3,7 @@ let
 in {
     networking = {
         firewall = {
-            allowedTCPPorts = [ adguardPort ];
+            allowedTCPPorts = [ adguardport ];
             allowedUDPPorts = [ 53 ];
         };
     };
@@ -11,7 +11,7 @@ in {
     services.adguardhome = {
         enable = true;
         openFirewall = true;
-        port = adguardPort;
+        port = adguardport;
         settings = {
             http = { address = "127.0.0.1:3003"; };
             dns = { upstream_dns = [ "192.168.178.1#fritz.box" "192.168.178.1:53" ]; };
