@@ -9,7 +9,6 @@
         zsh
     ];
 
-    programs."g-ls".enable = true;
     programs.zsh.enable = true;
 
     # ensure that terminfo is correct

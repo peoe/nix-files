@@ -29,11 +29,12 @@
         initContent = lib.mkOrder 1000 (builtins.readFile ./init);
 
         shellAliases = {
-            ls = "gls -A --group-directories-first --color=auto";
+            ls = "g -A --group-directories-first --color=auto";
+            ll = "g -A --group-directories-first --color=auto -l";
 
             ngc = "nix-collect-garbage -d";
-            nrs = "nixos-rebuild switch --flake github:peoe/nix-files#nixserver";
-            nrt = "nixos-rebuild test --flake github:peoe/nix-files#nixserver";
+            nrs = "sudo nixos-rebuild switch --flake github:peoe/nix-files#nixserver";
+            nrt = "sudo nixos-rebuild test --flake github:peoe/nix-files#nixserver";
 
             # git aliases
             ga = "git add";
