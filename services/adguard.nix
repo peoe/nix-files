@@ -1,12 +1,19 @@
-{
+let
+    adguardport = 3000;
+in {
+    networking = {
+        firewall = {
+            allowedTCPPorts = [ adguardPort ];
+            allowedUDPPorts = [ 53 ];
+        };
+    };
+
     services.adguardhome = {
         enable = true;
         openFirewall = true;
+        port = adguardPort;
         settings = {
-            http = {
-                # You can select any ip and port, just make sure to open firewalls where needed
-                address = "127.0.0.1:3003";
-            };
+            http = { address = "127.0.0.1:3003"; };
             dns = { upstream_dns = [ "192.168.178.1#fritz.box" "192.168.178.1:53" ]; };
             filtering = {
                 protection_enabled = true;
