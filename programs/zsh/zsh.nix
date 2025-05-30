@@ -31,6 +31,7 @@
         shellAliases = {
             ls = "gls -A --group-directories-first --color=auto";
 
+            ngc = "nix-collect-garbage -d";
             nrs = "nixos-rebuild switch --flake github:peoe/nix-files#nixserver";
             nrt = "nixos-rebuild test --flake github:peoe/nix-files#nixserver";
 
