@@ -1,4 +1,4 @@
-{ config, vars, ... }: let
+{ vars, ... }: let
     grafanaport = 3000;
 in {
     networking = {
@@ -9,13 +9,16 @@ in {
 
     services.grafana = {
         enable = true;
-        domain = "graphs.lab-leman";
-        port = grafanaport;
-        addr = "127.0.0.1";
         
         settings = {
             security = {
                 admin_user = vars.userName;
+            };
+
+            server = {
+                domain = "graphs.lab-leman";
+                http_port = grafanaport;
+                http_addr = "127.0.0.1";
             };
         };
     };
