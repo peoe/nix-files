@@ -27,6 +27,11 @@ in {
                 "https://adguardteam.github.io/HostlistsRegistry/assets/filter_30.txt" # Phishing
                 "https://adguardteam.github.io/HostlistsRegistry/assets/filter_12.txt" # Malware
             ];
+            rewrites = ''
+            'rewrites'
+             - 'domain': *.lab-leman
+               'answer': 192.168.178.5
+            '';
         };
     };
 }

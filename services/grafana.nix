@@ -16,7 +16,7 @@ in {
             };
 
             server = {
-                domain = "graphs.lab-leman.local";
+                domain = "graphs.lab-leman";
                 http_port = grafanaport;
                 http_addr = "127.0.0.1";
             };

@@ -3,7 +3,7 @@
         enable = true;
 
         virtualHosts = {
-            "ads.lab-leman.local" = {
+            "ads.lab-leman" = {
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.adguardhome.port}";
                     proxyWebsockets = true;
