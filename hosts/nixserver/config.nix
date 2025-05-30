@@ -47,6 +47,7 @@
     boot.initrd = {
         availableKernelModules = ["r8169"];
         luks.forceLuksSupportInInitrd = true;
+
         network = {
             enable = true;
             flushBeforeStage2 = true;
@@ -57,6 +58,9 @@
                 hostKeys = [ "/nix/secret/initrd/ssh_host_ed25519_key" ];
             };
         };
+
+        # try to ensure that we wait for network device before continuing
+        preLVMCommands = lib.mkBefore 400 "sleep 1";
     };
 
     system.stateVersion = "25.05";
