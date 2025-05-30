@@ -37,7 +37,7 @@
                     })
                 ];
             };
-            nixserver = nixpkgs.lib.nixosSystem rec {
+            nixserver = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
                 specialArgs = {inherit inputs outputs vars;};
                 modules = [
