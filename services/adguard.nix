@@ -1,5 +1,5 @@
 let
-    adguardport = 3000;
+    adguardport = 3003;
 in {
     networking = {
         firewall = {
