@@ -9,6 +9,8 @@
         ./../../packages/secrets.nix
 
         ./../../services/adguard.nix
+        ./../../services/grafana.nix
+        ./../../services/nginx.nix
     ];
 
     networking.hostName = "nixserver";
