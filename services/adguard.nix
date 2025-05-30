@@ -21,9 +21,6 @@ in {
                 parental_enabled = false;
                 safe_search = { enabled = false; };
             };
-            # The following notation uses map
-            # to not have to manually create {enabled = true; url = "";} for every filter
-            # This is, however, fully optional
             filters = map(url: { enabled = true; url = url; }) [
                 "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt"  # Adguard DNS
                 "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt"  # Dan Pollock
