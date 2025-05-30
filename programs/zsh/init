@@ -1,0 +1,101 @@
+#
+# Case sensitivity
+#
+
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+#
+# The usual PROMPT
+#
+
+_zle-line-init() {
+    [[ $CONTEXT == start ]] || return 0
+
+    # Start regular line editor
+    (( $+zle_bracketed_paste )) && print -r -n - $zle_bracketed_paste[1]
+    zle .recursive-edit
+    local -i ret=$?
+    (( $+zle_bracketed_paste )) && print -r -n - $zle_bracketed_paste[2]
+
+    # If we received EOT, we exit the shell
+    if [[ $ret == 0 && $KEYS == $'\4' ]]; then
+        _prompt_compact=1
+        zle .reset-prompt
+        exit
+    fi
+
+    # Line edition is over. Shorten the current prompt.
+    _prompt_compact=1
+    zle .reset-prompt
+    unset _prompt_compact
+
+    if (( ret )); then
+        # Ctrl-C
+        zle .send-break
+    else
+        # Enter
+        zle .accept-line
+    fi
+    return ret
+}
+zle -N zle-line-init _zle-line-init
+
+_prompt () {
+    # When compact, just time + prompt sign
+    if (( $_prompt_compact )); then
+        print "%F{118} > %f"
+        return
+    fi
+
+    # Regular prompt with much information
+    NEWLINE=$'\n'
+
+    # insert hostname if connected to ssh
+    [[ $SSH_CONNECTION ]] && local host=" %F{76}@%M%f"
+
+    print "${NEWLINE}%F{51}%(1V.(%1v).)%f${host} %F{214}%(3~|~/…/%2~|%~)%f${NEWLINE}%F{38} > %f"
+}
+setopt prompt_subst
+PROMPT='$(_prompt)'
+
+#
+# Git integration via RPROMPT
+#
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+
+_rprompt () {
+    # When compact, just time + prompt sign
+    if (( $_prompt_compact )); then
+        print ""
+        return
+    fi
+
+    # Regular prompt with much information
+    print "%F{76}${LBRACK}${vcs_info_msg_0_}${RBRACK}%f"
+}
+setopt prompt_subst
+RPROMPT='$(_rprompt)'
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git:*' formats "« %b »"
+zstyle ':vcs_info:git:*' actionformats "« %b %m%u%c(%a) »"
+
+#
+# Venv PROMPT addition
+#
+
+export VIRTUAL_ENV_DISABLE_PROMPT=yes
+
+function virtenv_indicator {
+    if [[ -z $VIRTUAL_ENV ]] then
+        psvar[1]=''
+    else
+        psvar[1]=${VIRTUAL_ENV##*/}
+    fi
+}
+
+add-zsh-hook precmd virtenv_indicator
