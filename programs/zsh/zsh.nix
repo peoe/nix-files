@@ -1,7 +1,6 @@
 { lib, ... }: {
     home.shell.enableZshIntegration = true;
 
-    programs."g-ls".enable = true;
     programs.zsh = {
         enable = true;
 
