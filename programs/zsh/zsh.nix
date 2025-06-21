@@ -56,9 +56,9 @@
     };
 
     # persist zsh history
-    home.persistence."/persist" = {
+    home.persistence."/persist/home/${vars.userName}" = {
         files = [
-            "/home/${vars.userName}/.zsh_history"
+            ".zsh_history"
         ];
     };
 }
