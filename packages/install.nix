@@ -10,16 +10,15 @@
 
             # format, set luks, mount
             sudo nix run github:nix-community/disko/latest -- --mode destroy,format,mount ~/nix-files/hosts/nixserver/disk-config.nix --yes-wipe-all-disks
-            sudo mkdir -pv /mnt/nix/secret/initrd
             sudo mkdir -pv /mnt/persist/etc/ssh
-            sudo chmod 0700 /mnt/nix/secret
+            sudo mkdir -pv /mnt/persist/var/lib
 
             # temporary dir for caching flakes
             sudo mkdir -pv /mnt/Flake/tmp
 
             # initrd hostkey and sops key
-            sudo ssh-keygen -t ed25519 -N "" -C "" -f /mnt/nix/secret/initrd/ssh_host_ed25519_key
-            sudo nix-shell --extra-experimental-features flakes -p ssh-to-age --run 'cat /mnt/nix/secret/initrd/ssh_host_ed25519_key.pub | ssh-to-age'
+            sudo ssh-keygen -t ed25519 -N "" -C "" -f /mnt/persist/etc/ssh/ssh_host_ed25519_key
+            sudo nix-shell --extra-experimental-features flakes -p ssh-to-age --run 'cat /mnt/persist/etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
             echo -e "Remember to update .sops.yaml, and call"
             echo ""
             echo -e "\t\033[1mfor file in secrets/*; do sops updatekeys "$file"; done\033[0m"
