@@ -1,6 +1,6 @@
 keys: 
   - &EPFLMacbook age1d25zk4n2af9ftmuzz4zz6rk3fx7arwz3m3sqfa7ht2aq9v76fc8q29g7ze
-  - &nixserver age1kj0vxa06k465a03panehpu0wtft3dd9zucdd3hae9jsmdx79t56qs3r4nx
+  - &nixserver age1crhz5dlurnmrfnl46p9m9upfh4s3yajhhgazzgfhf9xtwulkk5wqhuq3fc
 creation_rules:
   - path_regex: secrets/[^/]+(\.(yaml|json|env|ini|conf))?$
     key_groups:

@@ -4,7 +4,6 @@
             writeShellScriptBin "install_nixos"
             ''
             #!/usr/bin/env bash
-
             # clone relevant config
             git clone https://github.com/peoe/nix-files.git
 
