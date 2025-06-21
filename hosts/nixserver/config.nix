@@ -4,7 +4,6 @@
         inputs.impermanence.nixosModules.impermanence
         
         ./disk-config.nix
-        ./impermanence.nix
         ./root_diff.nix
 
         ./../../packages/base.nix
