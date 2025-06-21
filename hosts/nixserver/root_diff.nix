@@ -8,7 +8,7 @@
             sudo mount "/dev/mapper/crypted" /mnt -o subvol=/
             set -euo pipefail
             OLD_TRANSID=$(sudo btrfs subvolume find-new /mnt/root-snapshot 9999999)
-            OLD_TRANSID=${OLD_TRANSID}
+            OLD_TRANSID=''${OLD_TRANSID}
             sudo btrfs subvolume find-new "/mnt/root" "$OLD_TRANSID" |
             sed '$d' |
             cut -f17- -d' ' |
