@@ -48,7 +48,6 @@
                                                 "compress=zstd"
                                                 "noatime"
                                             ];
-                                            neededForBoot = true;
                                         };
                                         "/persist/nix" = {
                                             mountpoint = "/nix";
