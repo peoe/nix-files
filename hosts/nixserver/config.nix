@@ -25,8 +25,6 @@
         shell = pkgs.zsh;
     };
 
-    fileSystems."/persist".neededForBoot = true;
-
     home-manager = {
         extraSpecialArgs = {inherit inputs outputs vars;};
         useGlobalPkgs = true;
@@ -85,26 +83,20 @@
         };
 
         # try to ensure that we wait for network device before continuing
-        preLVMCommands = lib.mkOrder 400 "sleep 2";
+        preLVMCommands = lib.mkOrder 400 "sleep 5";
 
         # erase impermanent files
         postResumeCommands = lib.mkAfter ''
-        mkdir -p /mnt
-        mount "/dev/mapper/crypted" /mnt -o subvol=/
+        MNTPOINT=$(mktemp -d)
+        mount "/dev/mapper/crypted" "$MNTPOINT" -o subvol=/
 
-        btrfs subvolume list -o /mnt/root |
-        cut -f9 -d' ' |
-        while read subvolume; do
-        echo "deleting /$subvolume subvolume..."
-        btrfs subvolume delete "/mnt/$subvolume"
-        done &&
-        echo "deleting /root subvolume..." &&
-        btrfs subvolume delete /mnt/root
+        if [[ -e "$MNTPOINT/root" ]]; then
+            mv "$MNTPOINT/root" "$MNTPOINT/old_root"
+        fi
 
-        echo "restoring blank /root subvolume..."
-        btrfs subvolume snapshot /mnt/root-blank /mnt/root
-
-        umount /mnt
+        btrfs subvolume delete "$MNTPOINT/old_root"
+        btrfs subvolume create "$MNTPOINT/root"
+        umount "$MNTPOINT"
         '';
     };
 

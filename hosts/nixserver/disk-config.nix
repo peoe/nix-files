@@ -1,4 +1,6 @@
-{
+{    
+    fileSystems."/persist".neededForBoot = true;
+
     disko.devices = {
         disk = {
             sda = {
@@ -23,21 +25,15 @@
                                 type = "luks";
                                 name = "crypted";
                                 askPassword = true;
-                                # passwordFile = "/tmp/secret.key";
                                 settings.allowDiscards = true;
                                 content = {
                                     type = "btrfs";
                                     extraArgs = [ "-f" ];
-                                    postCreateHook = ''
-										MNTPOINT=$(mktemp -d)
-										mount "/dev/mapper/crypted" "$MNTPOINT" -o subvol=/
-										trap 'umount $MNTPOINT; rm -rf $MNTPOINT' EXIT
-										btrfs subvolume snapshot -r $MNTPOINT/root $MNTPOINT/root-snapshot
-									'';
                                     subvolumes = {
                                         "/root" = {
                                             mountpoint = "/";
                                             mountOptions = [
+                                                "subvol=root"
                                                 "compress=zstd"
                                                 "noatime"
                                             ];
@@ -45,6 +41,7 @@
                                         "/persist" = {
                                             mountpoint = "/persist";
                                             mountOptions = [
+                                                "subvol=persist"
                                                 "compress=zstd"
                                                 "noatime"
                                             ];
@@ -52,6 +49,7 @@
                                         "/persist/nix" = {
                                             mountpoint = "/nix";
                                             mountOptions = [
+                                                "subvol=nix"
                                                 "compress=zstd"
                                                 "noatime"
                                             ];
@@ -59,6 +57,7 @@
                                         "/persist/var/log" = {
                                             mountpoint = "/var/log";
                                             mountOptions = [
+                                                "subvol=log"
                                                 "compress=zstd"
                                                 "noatime"
                                             ];
