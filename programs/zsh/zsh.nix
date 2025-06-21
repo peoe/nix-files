@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, vars, ... }: {
     home.shell.enableZshIntegration = true;
 
     programs.zsh = {
@@ -58,7 +58,7 @@
     # persist zsh history
     home.persistence."/persist" = {
         files = [
-            "/home/alfred/.zsh_history"
+            "/home/${vars.userName}/.zsh_history"
         ];
     };
 }
