@@ -45,9 +45,7 @@
 
     environment.persistence."/persist" = {
         directories = [
-            "/nix"
             "/var/lib/nixos"
-            "/var/log"
         ];
 
         files = [
