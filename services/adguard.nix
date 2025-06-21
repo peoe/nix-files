@@ -31,6 +31,8 @@ in {
             'rewrites'
              - 'domain': *.lab-leman
                'answer': 192.168.178.5
+            'upstream_mode'
+              'parallel'
             '';
         };
     };
