@@ -43,12 +43,6 @@
         };
     };
 
-    environment.persistence."/persist/home/${vars.userName}" = {
-        files = [
-            ".zsh_history"
-        ];
-    };
-
     environment.persistence."/persist" = {
         directories = [
             "/var/lib/nixos"
@@ -60,6 +54,8 @@
             "/etc/ssh/ssh_host_ed25519_key.pub"
             "/etc/ssh/ssh_host_rsa_key"
             "/etc/ssh/ssh_host_rsa_key.pub"
+
+            "/home/${vars.userName}/.zsh_history"
         ];
     };
 
