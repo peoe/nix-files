@@ -36,8 +36,9 @@
             };
 
             imports = [
+                inputs.impermanence.homeManagerModules.impermanence
+
                 ./../../programs/default.nix
-                inputs.impermanence.nixosModules.home-manager
             ];
         };
     };
