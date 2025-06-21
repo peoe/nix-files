@@ -3,7 +3,7 @@
 
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-        # impermanence.url = "github:nix-community/impermanence";
+        impermanence.url = "github:nix-community/impermanence";
         nvf.url = "github:notashelf/nvf";
 
         disko = {

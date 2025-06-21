@@ -54,4 +54,11 @@
             highlighters = [ "main" "brackets" ];
         };
     };
+
+    # persist zsh history
+    environment.persistence."/persist" = {
+        files = [
+            "/home/alfred/.zsh_history"
+        ];
+    };
 }

@@ -1,8 +1,11 @@
 { config, inputs, lib, outputs, pkgs, vars, ... }: {
     imports = [
         inputs.home-manager.nixosModules.home-manager
+        inputs.impermanence.nixosModules.impermanence
         
         ./disk-config.nix
+        ./impermanence.nix
+        ./root_diff.nix
 
         ./../../packages/base.nix
         ./../../packages/nixserver.nix
@@ -36,7 +39,29 @@
             imports = [
                 ./../../programs/default.nix
             ];
+
+            home.persistence."/persist" = {
+                files = [
+                    "/home/alfred/.zsh_history"
+                ];
+            };
         };
+    };
+
+    environment.persistence."/persist" = {
+        directories = [
+            "/nix"
+            "/var/lib/nixos"
+            "/var/log"
+        ];
+
+        files = [
+            "/etc/machine-id"
+            "/etc/ssh/ssh_host_ed25519_key"
+            "/etc/ssh/ssh_host_ed25519_key.pub"
+            "/etc/ssh/ssh_host_rsa_key"
+            "/etc/ssh/ssh_host_rsa_key.pub"
+        ];
     };
 
     boot.loader = {
@@ -66,6 +91,26 @@
 
         # try to ensure that we wait for network device before continuing
         preLVMCommands = lib.mkOrder 400 "sleep 2";
+
+        # erase impermanent files
+        postResumeCommands = lib.mkAfter ''
+        mkdir -p /mnt
+        mount "/dev/mapper/crypted" /mnt -o subvol=/
+
+        btrfs subvolume list -o /mnt/root |
+        cut -f9 -d' ' |
+        while read subvolume; do
+        echo "deleting /$subvolume subvolume..."
+        btrfs subvolume delete "/mnt/$subvolume"
+        done &&
+        echo "deleting /root subvolume..." &&
+        btrfs subvolume delete /mnt/root
+
+        echo "restoring blank /root subvolume..."
+        btrfs subvolume snapshot /mnt/root-blank /mnt/root
+
+        umount /mnt
+        '';
     };
 
     system.stateVersion = "25.05";
