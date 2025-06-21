@@ -38,11 +38,15 @@
             };
 
             imports = [
-                inputs.impermanence.homeManagerModules.impermanence
-
                 ./../../programs/default.nix
             ];
         };
+    };
+
+    environment.persistence."/persist/home/${vars.userName}" = {
+        files = [
+            ".zsh_history"
+        ];
     };
 
     environment.persistence."/persist" = {

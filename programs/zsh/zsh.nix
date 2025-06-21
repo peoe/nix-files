@@ -54,11 +54,4 @@
             highlighters = [ "main" "brackets" ];
         };
     };
-
-    # persist zsh history
-    home.persistence."/persist/home/${vars.userName}" = {
-        files = [
-            ".zsh_history"
-        ];
-    };
 }
