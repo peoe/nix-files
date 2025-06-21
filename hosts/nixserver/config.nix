@@ -25,6 +25,8 @@
         shell = pkgs.zsh;
     };
 
+    fileSystems."/persist".neededForBoot = true;
+
     home-manager = {
         extraSpecialArgs = {inherit inputs outputs vars;};
         useGlobalPkgs = true;
