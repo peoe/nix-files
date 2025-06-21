@@ -38,12 +38,6 @@
             imports = [
                 ./../../programs/default.nix
             ];
-
-            home.persistence."/persist" = {
-                files = [
-                    "/home/alfred/.zsh_history"
-                ];
-            };
         };
     };
 

@@ -56,7 +56,7 @@
     };
 
     # persist zsh history
-    environment.persistence."/persist" = {
+    home.persistence."/persist" = {
         files = [
             "/home/alfred/.zsh_history"
         ];
