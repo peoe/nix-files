@@ -61,5 +61,6 @@
         directories = [
             ".local/share/zsh"
         ];
+        allowOther = true;
     };
 }
