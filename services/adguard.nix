@@ -14,12 +14,21 @@ in {
         port = adguardport;
         settings = {
             http = { address = "127.0.0.1:" + adguardport; };
-            dns = { upstream_dns = [ "192.168.178.1#fritz.box" "192.168.178.1:53" ]; };
+            dns = {
+                upstream_dns = [ "192.168.178.1#fritz.box" "192.168.178.1:53" ];
+                upstream_mode = "parallel";
+            };
             filtering = {
                 protection_enabled = true;
                 filtering_enabled = true;
                 parental_enabled = false;
                 safe_search = { enabled = false; };
+                rewrites = ''
+                'rewrites'
+                 - 'domain': *.lab-leman
+                   'answer': 192.168.178.5
+                '';
+
             };
             filters = map(url: { enabled = true; url = url; }) [
                 "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt"  # Adguard DNS
@@ -27,13 +36,6 @@ in {
                 "https://adguardteam.github.io/HostlistsRegistry/assets/filter_30.txt" # Phishing
                 "https://adguardteam.github.io/HostlistsRegistry/assets/filter_12.txt" # Malware
             ];
-            rewrites = ''
-            'rewrites'
-             - 'domain': *.lab-leman
-               'answer': 192.168.178.5
-            'upstream_mode'
-              'parallel'
-            '';
         };
     };
 }
