@@ -39,7 +39,7 @@ in {
 
     environment.persistence."/persist" = {
         files = [
-            "/var/lib/private/AdGuardHome/data/querylog.json"
+            # "/var/lib/private/AdGuardHome/data/querylog.json"
             "/var/lib/private/AdGuardHome/data/sessions.db"
             "/var/lib/private/AdGuardHome/data/stats.db"
         ];
