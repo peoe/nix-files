@@ -20,6 +20,7 @@
         '';
 
         history = {
+            path = "$HOME/.local/share/zsh/.zsh_history";
             save = 5000;
             size = 5000;
             ignoreAllDups = true;
@@ -53,5 +54,13 @@
             enable = true;
             highlighters = [ "main" "brackets" ];
         };
+    };
+
+    # persist zsh history
+    home.persistence."/persist/home/${vars.userName}" = {
+        directories = [
+            ".local/share/zsh"
+        ];
+        allowOther = true;
     };
 }
