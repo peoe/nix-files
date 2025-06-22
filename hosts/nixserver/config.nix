@@ -12,7 +12,7 @@
 
         ./../../services/adguard.nix
         ./../../services/grafana.nix
-        ./../../services/nginx.nix
+        ./../../services/_nginx.nix
     ];
 
     networking.hostName = "nixserver";
