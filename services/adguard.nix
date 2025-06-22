@@ -23,7 +23,7 @@ in {
                 filtering_enabled = true;
                 parental_enabled = false;
                 safe_search = { enabled = false; };
-                rewrites = [ { domain = "*.lab-leman"; answer = "192.168.178.5"; } ];
+                rewrites = [ { domain = "*.lab-leman.home"; answer = "192.168.178.5"; } ];
             };
             filters = map(url: { enabled = true; url = url; }) [
                 "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt"  # Adguard DNS

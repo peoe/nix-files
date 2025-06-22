@@ -3,15 +3,15 @@
         enable = true;
 
         virtualHosts = {
-            "ads.lab-leman" = {
+            "ads.lab-leman/" = {
                 locations."/" = {
-                    proxyPass = "http://127.0.0.1:${toString config.services.adguardhome.port}";
+                    proxyPass = "http://127.0.0.1:${toString config.services.adguardhome.port}/";
                     proxyWebsockets = true;
                 };
             };
             ${config.services.grafana.settings.server.domain} = {
                 locations."/" = {
-                    proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
+                    proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}/";
                     proxyWebsockets = true;
                 };
             };
