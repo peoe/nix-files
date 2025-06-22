@@ -36,8 +36,6 @@
             };
 
             imports = [
-                inputs.impermanence.homeManagerModules.impermanence
-
                 ./../../programs/default.nix
             ];
         };
