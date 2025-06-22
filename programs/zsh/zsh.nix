@@ -34,8 +34,8 @@
             ll = "g -A --group-directories-first --color=auto -l";
 
             ngc = "nix-collect-garbage -d";
-            nrs = "sudo nixos-rebuild switch --flake github:peoe/nix-files#nixserver";
-            nrt = "sudo nixos-rebuild test --flake github:peoe/nix-files#nixserver";
+            nrs = "sudo nixos-rebuild switch --flake github:peoe/nix-files#nixserver --no-write-lock-file";
+            nrt = "sudo nixos-rebuild test --flake github:peoe/nix-files#nixserver --no-write-lock-file";
 
             # git aliases
             ga = "git add";
