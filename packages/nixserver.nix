@@ -10,6 +10,7 @@
     ];
 
     programs.zsh.enable = true;
+    programs.fuse.userAllowOther = true;
 
     # ensure that terminfo is correct
     environment.sessionVariables = {
