@@ -93,7 +93,6 @@
         ];
     };
 
-    mfs_time = 
     environment.systemPackages = with pkgs; [
         (
             writeShellScriptBin "mergerfs_time_based_mover"
