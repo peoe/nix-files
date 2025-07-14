@@ -124,8 +124,8 @@
         done
         '';
     environment.systemPackages = [
-        mfs_time
-        mfs_percentage
+        (mfs_time)
+        (mfs_percentage)
     ];
 
     services.cron = {
