@@ -18,6 +18,7 @@ in {
             dns = {
                 upstream_dns = [ "192.168.178.1#fritz.box" "192.168.178.1:53" ];
                 upstream_mode = "parallel";
+                bootstrap_dns = [ "9.9.9.10" "149.112.112.10" "2620:fe::10" "2620:fe::fe:10" ];
             };
             filtering = {
                 protection_enabled = false;
