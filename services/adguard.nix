@@ -12,6 +12,7 @@ in {
         enable = true;
         openFirewall = true;
         port = adguardport;
+        mutableSettings = false;
         settings = {
             http = { address = "127.0.0.1:" + adguardport; };
             dns = {
@@ -19,7 +20,7 @@ in {
                 upstream_mode = "parallel";
             };
             filtering = {
-                protection_enabled = true;
+                protection_enabled = false;
                 filtering_enabled = true;
                 parental_enabled = false;
                 safe_search = { enabled = false; };
