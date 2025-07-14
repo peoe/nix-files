@@ -93,40 +93,43 @@
         ];
     };
 
-    let
-        mfs_time = pkgs.writeShellScriptBin "mergerfs_time_based_mover"
+    mfs_time = 
+    environment.systemPackages = with pkgs; [
+        (
+            writeShellScriptBin "mergerfs_time_based_mover"
             ''
             #!/usr/bin/env sh
             if [ $# != 3 ]; then
                 echo "usage: $0 <cache-fs> <backing-pool> <days-old>"
                 exit 1
             fi
-            CACHE="${1}"
-            BACKING="${2}"
-            N=${3}
-            find "${CACHE}" -type f -atime +${N} -printf '%P\n' | rsync --files-from=- -axqHAXWES --preallocate --remove-source-files "${CACHE}/" "${BACKING}/"
+            CACHE="''${1}"
+            BACKING="''${2}"
+            N=''${3}
+            find "${CACHE}" -type f -atime +''${N} -printf '%P\n' | rsync --files-from=- -axqHAXWES --preallocate --remove-source-files "''${CACHE}/" "''${BACKING}/"
             '';
-        mfs_percentage = pkgs.writeShellScriptBin "mergerfs_percentage_based_mover"
+        )
+        (
+            writeShellScriptBin "mergerfs_percentage_based_mover"
             ''
             #!/usr/bin/env sh
             if [ $# != 3 ]; then
                 echo "usage: $0 <cache-fs> <backing-pool> <percentage>"
                 exit 1
             fi
-            CACHE="${1}"
-            BACKING="${2}"
-            PERCENTAGE=${3}
+            CACHE="''${1}"
+            BACKING="''${2}"
+            PERCENTAGE=''${3}
             set -o errexit
-            while [ $(df --output=pcent "${CACHE}" | grep -v Use | cut -d'%' -f1) -gt ${PERCENTAGE} ]
+            while [ $(df --output=pcent "''${CACHE}" | grep -v Use | cut -d'%' -f1) -gt ''${PERCENTAGE} ]
             do
-                FILE=$(find "${CACHE}" -type f -printf '%A@ %P\n' | sort | head -n 1 | cut -d' ' -f2-)
-                test -n "${FILE}"
-                rsync -axqHAXWESR --preallocate --relative --remove-source-files "${CACHE}/./${FILE}" "${BACKING}/"
+                FILE=$(find "''${CACHE}" -type f -printf '%A@ %P\n' | sort | head -n 1 | cut -d' ' -f2-)
+                test -n "''${FILE}"
+                rsync -axqHAXWESR --preallocate --relative --remove-source-files "''${CACHE}/./''${FILE}" "''${BACKING}/"
             done
             '';
-    in {
-        environment.systemPackages = [ mfs_time, mfs_percentage ];
-    }
+        )
+    ];
 
     services.cron = {
         enable = true;
