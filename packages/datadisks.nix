@@ -106,7 +106,7 @@
             BACKING="''${2}"
             N=''${3}
             find "${CACHE}" -type f -atime +''${N} -printf '%P\n' | rsync --files-from=- -axqHAXWES --preallocate --remove-source-files "''${CACHE}/" "''${BACKING}/"
-            '';
+            ''
         )
         (
             writeShellScriptBin "mergerfs_percentage_based_mover"
@@ -126,7 +126,7 @@
                 test -n "''${FILE}"
                 rsync -axqHAXWESR --preallocate --relative --remove-source-files "''${CACHE}/./''${FILE}" "''${BACKING}/"
             done
-            '';
+            ''
         )
     ];
 
