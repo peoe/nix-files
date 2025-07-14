@@ -104,7 +104,7 @@
         BACKING="${2}"
         N=${3}
         find "${CACHE}" -type f -atime +${N} -printf '%P\n' | rsync --files-from=- -axqHAXWES --preallocate --remove-source-files "${CACHE}/" "${BACKING}/"
-        ''
+        '';
     mfs_percentage = writeShellScriptBin "mergerfs_percentage_based_mover"
         ''
         #!/usr/bin/env sh
@@ -122,7 +122,7 @@
             test -n "${FILE}"
             rsync -axqHAXWESR --preallocate --relative --remove-source-files "${CACHE}/./${FILE}" "${BACKING}/"
         done
-        ''
+        '';
     environment.systemPackages = with pkgs; [
         mfs_time
         mfs_percentage
