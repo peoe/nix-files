@@ -79,10 +79,10 @@
             "/mnt/disks/data1/.snapraid.parity"
             "/persist/.snapraid.parity"
         ];
-        dataDisks = [
-            cache = "/mnt/cache"
-            data1 = "/mnt/disks/data1"
-        ];
+        dataDisks = {
+            cache = "/mnt/cache";
+            data1 = "/mnt/disks/data1";
+        };
         sync.interval = "04:00";
         sync.interval = "daily";
         exclude = [
