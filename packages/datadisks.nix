@@ -93,7 +93,7 @@
         ];
     };
 
-    mfs_time = writeShellScriptBin "mergerfs_time_based_mover"
+    mfs_time = pkgs.writeShellScriptBin "mergerfs_time_based_mover"
         ''
         #!/usr/bin/env sh
         if [ $# != 3 ]; then
@@ -105,7 +105,7 @@
         N=${3}
         find "${CACHE}" -type f -atime +${N} -printf '%P\n' | rsync --files-from=- -axqHAXWES --preallocate --remove-source-files "${CACHE}/" "${BACKING}/"
         '';
-    mfs_percentage = writeShellScriptBin "mergerfs_percentage_based_mover"
+    mfs_percentage = pkgs.writeShellScriptBin "mergerfs_percentage_based_mover"
         ''
         #!/usr/bin/env sh
         if [ $# != 3 ]; then
@@ -123,7 +123,7 @@
             rsync -axqHAXWESR --preallocate --relative --remove-source-files "${CACHE}/./${FILE}" "${BACKING}/"
         done
         '';
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = [
         mfs_time
         mfs_percentage
     ];
