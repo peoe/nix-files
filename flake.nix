@@ -2,7 +2,7 @@
     description = "NixOS server ISO";
 
     inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
         impermanence.url = "github:nix-community/impermanence";
         nvf.url = "github:notashelf/nvf";
 
