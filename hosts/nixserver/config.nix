@@ -7,6 +7,7 @@
         ./root_diff.nix
 
         ./../../packages/base.nix
+        ./../../packages/datadisks.nix
         ./../../packages/nixserver.nix
         ./../../packages/secrets.nix
 
