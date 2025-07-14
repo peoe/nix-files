@@ -1,4 +1,4 @@
-{
+{ config, ... }: {
     environment.etc.crypttab = {
         mode = "0600";
         text = ''
