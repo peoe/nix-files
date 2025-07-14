@@ -84,7 +84,7 @@
             data1 = "/mnt/disks/data1";
         };
         sync.interval = "04:00";
-        sync.interval = "daily";
+        scrub.interval = "weekly";
         exclude = [
             "lost+found"
             ".DS_Store"
