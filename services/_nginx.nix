@@ -15,6 +15,12 @@
                     proxyWebsockets = true;
                 };
             };
+            "mealie.lab-leman" = {
+                locations."/" = {
+                    proxyPass = "http://127.0.0.1:${toString config.services.mealie.port}";
+                    proxyWebsockets = true;
+                };
+            };
         };
     };
 }

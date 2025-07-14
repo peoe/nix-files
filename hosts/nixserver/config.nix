@@ -13,6 +13,7 @@
 
         ./../../services/adguard.nix
         ./../../services/grafana.nix
+        ./../../services/mealie.nix
         ./../../services/_nginx.nix
     ];
 
