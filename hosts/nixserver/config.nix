@@ -17,6 +17,7 @@
     ];
 
     networking.hostName = "nixserver";
+    time.timeZone = "Europe/Zurich";
 
     users.users.${vars.userName} = {
         isNormalUser = true;
