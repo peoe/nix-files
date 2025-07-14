@@ -1,5 +1,5 @@
 { vars, ... }: let
-    grafanaport = 3000;
+    grafanaport = 3001;
 in {
     networking = {
         firewall = {
