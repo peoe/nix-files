@@ -16,4 +16,9 @@ in {
             TOKEN_TIME = 336;
         };
     };
+
+    fileSystems."/var/lib/private/mealie" = {
+        device = "/data/private/mealie";
+        options = [ "bind" ];
+    };
 }
