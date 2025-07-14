@@ -105,7 +105,7 @@
             CACHE="''${1}"
             BACKING="''${2}"
             N=''${3}
-            find "${CACHE}" -type f -atime +''${N} -printf '%P\n' | rsync --files-from=- -axqHAXWES --preallocate --remove-source-files "''${CACHE}/" "''${BACKING}/"
+            find "''${CACHE}" -type f -atime +''${N} -printf '%P\n' | rsync --files-from=- -axqHAXWES --preallocate --remove-source-files "''${CACHE}/" "''${BACKING}/"
             ''
         )
         (
