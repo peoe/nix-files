@@ -21,7 +21,7 @@ in {
                 bootstrap_dns = [ "9.9.9.10" "149.112.112.10" "2620:fe::10" "2620:fe::fe:10" ];
             };
             filtering = {
-                protection_enabled = false;
+                protection_enabled = true;
                 filtering_enabled = true;
                 parental_enabled = false;
                 safe_search = { enabled = false; };
