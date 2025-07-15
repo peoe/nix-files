@@ -5,7 +5,6 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
         impermanence.url = "github:nix-community/impermanence";
         nvf.url = "github:notashelf/nvf";
-
         disko = {
             url = "github:nix-community/disko/latest";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +17,7 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nocodb.url = "github:nocodb/nocodb";
     };
 
     outputs = { self, nixpkgs, disko, ... } @ inputs: let
