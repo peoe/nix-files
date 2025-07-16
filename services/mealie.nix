@@ -14,7 +14,7 @@ in {
         settings = {
             ALLOW_SIGNUP = "false";
             TOKEN_TIME = 336;
-            DB_ENGINE = ""
+            DB_ENGINE = "postgres";
         };
     };
 
