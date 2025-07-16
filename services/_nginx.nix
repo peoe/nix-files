@@ -1,5 +1,5 @@
 { config, ... }: let
-    base_url = "lab-leman";
+    base_url = "lab-leman.ipv64.de";
 in {
     services.nginx = {
         enable = true;
