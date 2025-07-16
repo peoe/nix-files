@@ -5,7 +5,7 @@
 
     security.acme = {
         acceptTerms = true;
-        defaults.email = "oehme.pb+acme@gmail.com";
+        defaults.email = "oehme.pb@gmail.com";
 
         certs."${toString vars.base_url}" = {
             domain = vars.base_url;
