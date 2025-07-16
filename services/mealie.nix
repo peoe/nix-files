@@ -18,10 +18,13 @@ in {
         };
     };
 
-    # fileSystems."/var/lib/private/mealie" = {
-    #     device = "/data/private/mealie";
-    #     options = [ "bind" ];
-    # };
+    fileSystems."/var/lib/private/mealie" = {
+        depends = [
+            "/data"
+        ];
+        device = "/data/private/mealie";
+        options = [ "bind" ];
+    };
 
     services.postgresql = {
         enable = true;
