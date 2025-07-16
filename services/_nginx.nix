@@ -13,12 +13,18 @@
                 };
             };
             "graphs.${toString vars.base_url}" = {
+                forceSSL = true;
+                useACMEHost = vars.base_url;
+
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
                     proxyWebsockets = true;
                 };
             };
             "mealie.${toString vars.base_url}" = {
+                forceSSL = true;
+                useACMEHost = vars.base_url;
+
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.mealie.port}";
                     proxyWebsockets = true;
