@@ -1,4 +1,4 @@
-{ config, ... }: let
+{ config, pkgs, ... }: let
     mealieport = 3002;
 in {
     networking = {
