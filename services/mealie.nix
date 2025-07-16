@@ -39,6 +39,7 @@ in {
             ALLOW_SIGNUP = "false";
             TOKEN_TIME = 336;
             DB_ENGINE = "postgres";
+            POSTGRES_DB = "postgres:///mealie?host=/run/postgresql";
         };
     };
 
