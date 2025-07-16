@@ -7,6 +7,26 @@ in {
         };
     };
 
+    services.mealie = {
+        enable = true;
+        port = mealieport;
+        listenAddress = "127.0.0.1";
+        settings = {
+            ALLOW_SIGNUP = "false";
+            TOKEN_TIME = 336;
+            DB_ENGINE = "postgres";
+            POSTGRES_DB = "mealie?host=/run/postgresql";
+        };
+    };
+
+    fileSystems."/var/lib/private/mealie" = {
+        depends = [
+            "/data"
+        ];
+        device = "/data/private/mealie";
+        options = [ "bind" ];
+    };
+
     services.postgresql = {
         enable = true;
 
@@ -29,25 +49,5 @@ in {
         '';
 
         settings.log_timezone = config.time.timeZone;
-    };
-
-    services.mealie = {
-        enable = true;
-        port = mealieport;
-        listenAddress = "127.0.0.1";
-        settings = {
-            ALLOW_SIGNUP = "false";
-            TOKEN_TIME = 336;
-            DB_ENGINE = "postgres";
-            POSTGRES_DB = "mealie?host=/run/postgresql";
-        };
-    };
-
-    fileSystems."/var/lib/private/mealie" = {
-        depends = [
-            "/data"
-        ];
-        device = "/data/private/mealie";
-        options = [ "bind" ];
     };
 }
