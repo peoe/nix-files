@@ -1,4 +1,4 @@
-{ ... }: let
+{ config, ... }: let
     mealieport = 3002;
 in {
     networking = {
@@ -14,11 +14,36 @@ in {
         settings = {
             ALLOW_SIGNUP = "false";
             TOKEN_TIME = 336;
+            DB_ENGINE = ""
         };
     };
 
-    fileSystems."/var/lib/private/mealie" = {
-        device = "/data/private/mealie";
-        options = [ "bind" ];
+    # fileSystems."/var/lib/private/mealie" = {
+    #     device = "/data/private/mealie";
+    #     options = [ "bind" ];
+    # };
+
+    services.postgresql = {
+        enable = true;
+
+        dataDir = "/data/private/postgresql/${config.services.postgresql.package.psqlSchema}";
+        ensureDatabases = [ "mealie" ];
+        ensureUsers = [{
+            name = "mealie";
+            ensureDBOwnership = true;
+        }];
+
+        package = with pkgs; postgresql_15;
+        authentication = lib.mkForce ''
+            #type database DBuser  origin-address auth-method
+            # unix socket
+            local all      all                    trust
+            # ipv4
+            host  all      all     127.0.0.1/32   trust
+            # ipv6
+            host  all      all     ::1/128        trust
+        '';
+
+        settings.log_timezone = config.time.timeZone;
     };
 }
