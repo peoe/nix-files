@@ -1,21 +1,23 @@
-{ config, ... }: {
+{ config, ... }: let
+    base_url = "lab-leman";
+in {
     services.nginx = {
         enable = true;
 
         virtualHosts = {
-            "ads.lab-leman" = {
+            "ads.${toString base_url}" = {
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.adguardhome.port}";
                     proxyWebsockets = true;
                 };
             };
-            ${config.services.grafana.settings.server.domain} = {
+            "graphs.${toString base_url}" = {
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
                     proxyWebsockets = true;
                 };
             };
-            "mealie.lab-leman" = {
+            "mealie.${toString base_url}" = {
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.mealie.port}";
                     proxyWebsockets = true;
