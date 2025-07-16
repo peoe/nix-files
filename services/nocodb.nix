@@ -12,7 +12,7 @@ in {
         environment = {
             DB_URL="postgres:///nocodb?host=/run/postgresql";
 
-            PORT = nocodbport;
+            PORT = "${toString nocodbport}";
 
             NC_DISABLE_TELE = "true";
         };
