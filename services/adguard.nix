@@ -1,4 +1,4 @@
-{ config, ... }: let
+let
     adguardport = 3000;
 in {
     networking = {
@@ -17,7 +17,7 @@ in {
             users = [
                 {
                     name = "adguard";
-                    password = config.sops.secrets.adguardpasswd.path;
+                    password = "$2y$10$MgOL4sES7FZbshHL914JHe2F0jPmSCgeoDEnTCcWFLTxeeXA2hkiy";
                 }
             ];
             http = { address = "127.0.0.1:" + adguardport; };
