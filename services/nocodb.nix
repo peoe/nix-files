@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }: let
+{ config, inputs, lib, pkgs, ... }: let
     nocodbport = 3003;
 in {
     imports = [
