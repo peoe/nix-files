@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ config, vars, ... }: {
     sops.secrets = {
         "ipv64-api-key" = {};
     };
