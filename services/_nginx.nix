@@ -6,6 +6,9 @@ in {
 
         virtualHosts = {
             "ads.${toString base_url}" = {
+                forceSSL = true;
+                useACMEHost = base_url;
+
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.adguardhome.port}";
                     proxyWebsockets = true;
