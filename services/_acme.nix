@@ -1,4 +1,4 @@
-{
+{ vars, ... }: {
     sops.secrets = {
         "ipv64-api-key" = {};
     };
@@ -7,9 +7,9 @@
         acceptTerms = true;
         defaults.email = "oehme.pb+acme@gmail.com";
 
-        certs."lab-leman.ipv64.de" = {
-            domain = "lab-leman.ipv64.de";
-            extraDomainNames = [ "*.lab-leman.ipv64.de" ];
+        certs."${toString vars.base_url}" = {
+            domain = vars.base_url;
+            extraDomainNames = [ "*.${toString vars.base_url}" ];
             dnsProvider = "ipv64";
             dnsPropagationCheck = true;
             credentialFiles = {

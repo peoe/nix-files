@@ -1,26 +1,24 @@
-{ config, ... }: let
-    base_url = "lab-leman.ipv64.de";
-in {
+{ config, vars, ... }: {
     services.nginx = {
         enable = true;
 
         virtualHosts = {
-            "ads.${toString base_url}" = {
+            "ads.${toString vars.base_url}" = {
                 forceSSL = true;
-                useACMEHost = base_url;
+                useACMEHost = vars.base_url;
 
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.adguardhome.port}";
                     proxyWebsockets = true;
                 };
             };
-            "graphs.${toString base_url}" = {
+            "graphs.${toString vars.base_url}" = {
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
                     proxyWebsockets = true;
                 };
             };
-            "mealie.${toString base_url}" = {
+            "mealie.${toString vars.base_url}" = {
                 locations."/" = {
                     proxyPass = "http://127.0.0.1:${toString config.services.mealie.port}";
                     proxyWebsockets = true;

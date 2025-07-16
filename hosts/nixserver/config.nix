@@ -15,6 +15,7 @@
         ./../../services/grafana.nix
         ./../../services/mealie.nix
         # ./../../services/nocodb.nix
+        ./../../services/_acme.nix
         ./../../services/_nginx.nix
     ];
 
