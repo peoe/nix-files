@@ -1,4 +1,4 @@
-let
+{ config, ... }: let
     adguardport = 3000;
 in {
     networking = {
@@ -14,6 +14,12 @@ in {
         port = adguardport;
         mutableSettings = false;
         settings = {
+            users = [
+                {
+                    name = "adguard";
+                    password = config.sops.secrets.adguardpasswd.path;
+                }
+            ];
             http = { address = "127.0.0.1:" + adguardport; };
             dns = {
                 upstream_dns = [ "192.168.178.1#fritz.box" "192.168.178.1:53" ];
