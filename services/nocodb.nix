@@ -9,7 +9,7 @@ in {
 
     services.nocodb = {
         enable = true;
-        environments = {
+        environment = {
             DB_URL="postgres:///nocodb?host=/run/postgresql";
 
             PORT = nocodbport;
