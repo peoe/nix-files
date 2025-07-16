@@ -10,7 +10,7 @@ in {
     services.nocodb = {
         enable = true;
         environment = {
-            DB_URL="postgres:///nocodb?host=/run/postgresql";
+            DB_URL="nocodb?host=/run/postgresql";
 
             PORT = "${toString nocodbport}";
 
