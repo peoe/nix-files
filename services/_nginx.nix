@@ -30,6 +30,15 @@
                     proxyWebsockets = true;
                 };
             };
+            "books.${toString vars.base_url}" = {
+                forceSSL = true;
+                useACMEHost = vars.base_url;
+
+                locations."/" = {
+                    proxyPass = "http://127.0.0.1:3003";
+                    proxyWebsockets = true;
+                };
+            };
         };
     };
 }
