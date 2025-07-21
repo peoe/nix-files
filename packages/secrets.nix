@@ -16,6 +16,8 @@
             sopsFile = ./../secrets/luks-key;
         };
 
+        secrets.dockerpasswd = {};
+
         gnupg.sshKeyPaths = [];
     };
 }
