@@ -11,9 +11,9 @@ in {
             # Required for container networking to be able to use names.
             dns_enabled = true;
         };
-        containers.storage.settings = {
-            graphroot = "/data/containers/storage";
-        };
+    };
+    virtualisation.containers.storage.settings = {
+        graphroot = "/data/containers/storage";
     };
     virtualisation.oci-containers.backend = "podman";
 
