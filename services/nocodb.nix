@@ -12,9 +12,6 @@ in {
             dns_enabled = true;
         };
     };
-    virtualisation.containers.storage.settings = {
-        graphroot = "/data/containers/storage";
-    };
     virtualisation.oci-containers.backend = "podman";
 
     virtualisation.oci-containers.containers."nocodb" = {
@@ -31,6 +28,14 @@ in {
             TZ = config.time.timeZone;
             DB_URL = "nocodb?host=/run/postgresql";
         };
+    };
+
+    fileSystems."/var/lib/containers/storage" = {
+        depends = [
+            "/data"
+        ];
+        device = "/data/containers/storage";
+        options = [ "bind" ];
     };
 
     services.postgresql = {
