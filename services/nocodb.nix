@@ -34,6 +34,12 @@ in {
             TZ = config.time.timeZone;
             DB_URL = "nocodb?host=/run/postgresql";
         };
+        extraOptions = [
+            "--add-host=host.docker.internal:host-gateway"
+            "--device=/dev/dri:/dev/dri:rwm"
+            "--network-alias=nocodb"
+            "--network=media"
+        ];
     };
 
     fileSystems."/var/lib/containers/storage" = {
