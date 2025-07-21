@@ -36,9 +36,7 @@ in {
         };
         extraOptions = [
             "--add-host=host.docker.internal:host-gateway"
-            "--device=/dev/dri:/dev/dri:rwm"
-            "--network-alias=nocodb"
-            "--network=media"
+            "--network=container:nocodb"
         ];
     };
 
