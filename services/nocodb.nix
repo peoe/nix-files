@@ -15,12 +15,13 @@ in {
     virtualisation.oci-containers.backend = "podman";
 
     virtualisation.oci-containers.containers."nocodb" = {
+        autoStart = true;
         login = {
             registry = "docker.io";
             username = "peoe";
             passwordFile = config.sops.secrets.dockerpasswd.path;
         };
-        image = "nocodb:0.263.8";
+        image = "nocodb/nocodb:0.263.8";
         volumes = [
             "/data/private/nocodb:/usr/app/data"
             "/run/postgresql:/run/postgresql"
