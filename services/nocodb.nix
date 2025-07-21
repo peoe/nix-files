@@ -3,7 +3,7 @@
 in {
     networking.firewall.interfaces."podman+".allowedUDPPorts = [53];
 
-    virtualization.podman = {
+    virtualisation.podman = {
         enable = true;
         autoPrune.enable = true;
         dockerCompat = true;
