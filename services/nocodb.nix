@@ -1,20 +1,35 @@
 { config, inputs, lib, pkgs, ... }: let
     nocodbport = 3003;
 in {
-    imports = [
-        inputs.nocodb.nixosModules.nocodb
-    ];
+    networking.firewall.interfaces."podman+".allowedUDPPorts = [53];
 
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
-
-    services.nocodb = {
+    virtualization.podman = {
         enable = true;
+        autoPrune.enable = true;
+        dockerCompat = true;
+        defaultNetwork.settings = {
+            # Required for container networking to be able to use names.
+            dns_enabled = true;
+        };
+        containers.storage.settings = {
+            graphroot = "/data/containers/storage";
+        };
+    };
+    virtualisation.oci-containers.backend = "podman";
+
+    virtualisation.oci-containers.containers."nocodb" = {
+        image = "nocodb:0.263.8";
+        volumes = [
+            "/data/private/nocodb:/usr/app/data"
+            "/run/postgresql:/run/postgresql"
+        ];
+        ports = [
+            "8096:8096"
+        ];
+        log-driver = "journald";
         environment = {
-            DB_URL="nocodb?host=/run/postgresql";
-
-            PORT = "${toString nocodbport}";
-
-            NC_DISABLE_TELE = "true";
+            TZ = config.time.timeZone;
+            DB_URL = "nocodb?host=/run/postgresql";
         };
     };
 

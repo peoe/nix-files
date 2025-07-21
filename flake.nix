@@ -17,10 +17,6 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        nocodb = {
-            url = "github:nocodb/nocodb";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
     outputs = { self, nixpkgs, disko, ... } @ inputs: let
