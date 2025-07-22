@@ -7,10 +7,13 @@ in {
         enable = true;
         autoPrune.enable = true;
         dockerCompat = true;
-        defaultNetwork.settings = {
-            # Required for container networking to be able to use names.
-            dns_enabled = true;
-        };
+        # defaultNetwork.settings = {
+        #     # Required for container networking to be able to use names.
+        #     dns_enabled = true;
+        # };
+    };
+    virtualisation.containers.storage.settings.storage = {
+        rootless_storage_path = "/data/containers/storage";
     };
     virtualisation.oci-containers.backend = "podman";
 
@@ -29,7 +32,7 @@ in {
         ports = [
             "${toString nocodbport}:${toString nocodbport}"
             "53:53/udp"
-            "53:53/tcp"
+            # "53:53/tcp"
         ];
         log-driver = "journald";
         environment = {
@@ -37,14 +40,6 @@ in {
             DB_URL = "nocodb?host=/run/postgresql";
             PORT = "${toString nocodbport}";
         };
-    };
-
-    fileSystems."/var/lib/containers/storage" = {
-        depends = [
-            "/data"
-        ];
-        device = "/data/containers/storage";
-        options = [ "bind" ];
     };
 
     services.postgresql = {
