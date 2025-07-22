@@ -30,6 +30,9 @@ in {
             NC_INVITE_ONLY_SIGNUP = "true";
             NC_DISABLE_TELE = "true";
         };
+        extraOptions = [
+            "--network=host"
+        ];
     };
 
     services.postgresql = {
