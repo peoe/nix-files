@@ -1,5 +1,5 @@
 { config, inputs, lib, pkgs, ... }: let
-    ip = "127.0.0.1";
+    ip = "192.168.178.5";
     nocodbport = 3003;
 in {
     networking.firewall.interfaces."podman+".allowedUDPPorts = [53];
