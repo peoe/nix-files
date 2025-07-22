@@ -1,4 +1,5 @@
 { config, inputs, lib, pkgs, ... }: let
+    ip = "127.0.0.1";
     nocodbport = 3003;
 in {
     networking.firewall.interfaces."podman+".allowedUDPPorts = [53];
@@ -27,12 +28,14 @@ in {
             "/run/postgresql:/run/postgresql"
         ];
         ports = [
-            "127.0.0.1:${toString nocodbport}:${toString nocodbport}"
+            "${ip}$:${toString nocodbport}:${toString nocodbport}"
+            "${ip}:53:53/udp"
         ];
         log-driver = "journald";
         environment = {
             TZ = config.time.timeZone;
             DB_URL = "nocodb?host=/run/postgresql";
+            PORT = nocodbport;
         };
     };
 
