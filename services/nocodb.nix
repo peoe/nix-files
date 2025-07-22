@@ -28,7 +28,7 @@ in {
             "/run/postgresql:/run/postgresql"
         ];
         ports = [
-            "${ip}$:${toString nocodbport}:${toString nocodbport}"
+            "${ip}:${toString nocodbport}:${toString nocodbport}"
             "${ip}:53:53/udp"
         ];
         log-driver = "journald";
