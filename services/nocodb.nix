@@ -1,8 +1,7 @@
-{ config, inputs, lib, pkgs, ... }: let
-    ip = "192.168.178.5";
-    nocodbport = 3003;
+{ config, ... }: let
+    nocodbport = 8080;
 in {
-    networking.firewall.interfaces."podman+".allowedUDPPorts = [53];
+    # networking.firewall.interfaces."podman+".allowedUDPPorts = [ 53 ];
 
     virtualisation.podman = {
         enable = true;
@@ -28,7 +27,7 @@ in {
             "/run/postgresql:/run/postgresql"
         ];
         ports = [
-            "${ip}:${toString nocodbport}:${toString nocodbport}"
+            "${toString nocodbport}:${toString nocodbport}"
         ];
         log-driver = "journald";
         environment = {
