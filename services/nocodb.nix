@@ -1,8 +1,8 @@
 { config, ... }: let
-    ip = "192.168.178.5";
+    ip = "127.0.0.1";
     nocodbport = 8080;
 in {
-    # networking.firewall.interfaces."podman+".allowedUDPPorts = [ 53 ];
+    networking.firewall.interfaces."podman+".allowedUDPPorts = [ 53 ];
 
     virtualisation.podman = {
         enable = true;
