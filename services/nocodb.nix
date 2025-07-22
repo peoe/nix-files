@@ -27,7 +27,7 @@ in {
             "/run/postgresql:/run/postgresql"
         ];
         ports = [
-            "${toString nocodbport}:${toString nocodbport}"
+            "127.0.0.1:${toString nocodbport}:${toString nocodbport}"
         ];
         log-driver = "journald";
         environment = {
