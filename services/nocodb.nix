@@ -35,7 +35,7 @@ in {
         environment = {
             TZ = config.time.timeZone;
             DB_URL = "nocodb?host=/run/postgresql";
-            PORT = nocodbport;
+            PORT = "${toString nocodbport}";
         };
     };
 
