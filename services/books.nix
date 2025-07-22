@@ -26,6 +26,7 @@ in {
         log-driver = "journald";
         environment = {
             TZ = config.time.timeZone;
+            NC_DB = "pg://host.docker.internal:5432?u=nocodb&d=nocodb";
             PORT = "${toString nocodbport}";
             NC_INVITE_ONLY_SIGNUP = "true";
             NC_DISABLE_TELE = "true";
@@ -36,9 +37,9 @@ in {
         enable = true;
 
         dataDir = "/data/private/postgresql/${config.services.postgresql.package.psqlSchema}";
-        ensureDatabases = [ "books" ];
+        ensureDatabases = [ "nocodb" ];
         ensureUsers = [{
-            name = "books";
+            name = "nocodb";
             ensureDBOwnership = true;
         }];
 
