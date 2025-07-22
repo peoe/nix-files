@@ -1,7 +1,7 @@
 { config, ... }: let
     nocodbport = 8080;
 in {
-    networking.firewall.interfaces."podman+".allowedUDPPorts = [ 53 ];
+    # networking.firewall.interfaces."podman+".allowedUDPPorts = [ 53 ];
 
     virtualisation.podman = {
         enable = true;
@@ -12,13 +12,13 @@ in {
         #     dns_enabled = true;
         # };
     };
-    virtualisation.containers.storage.settings.storage = {
-        graphroot = "/data/containers/storage";
-    };
+    # virtualisation.containers.storage.settings.storage = {
+    #     graphroot = "/data/containers/storage";
+    # };
     virtualisation.oci-containers.backend = "podman";
 
     virtualisation.oci-containers.containers."nocodb" = {
-        autoStart = true;
+        # autoStart = true;
         login = {
             registry = "docker.io";
             username = "peoe";
@@ -30,9 +30,7 @@ in {
             "/run/postgresql:/run/postgresql"
         ];
         ports = [
-            "${toString nocodbport}:${toString nocodbport}"
-            # "53:53/udp"
-            # "53:53/tcp"
+            "0.0.0.0:${toString nocodbport}:${toString nocodbport}"
         ];
         log-driver = "journald";
         environment = {
