@@ -1,5 +1,5 @@
 { config, ... }: let
-    nocodbport = 8080;
+    nocodbport = 3003;
 in {
     # networking.firewall.interfaces."podman+".allowedUDPPorts = [ 53 ];
 
@@ -24,7 +24,7 @@ in {
             username = "peoe";
             passwordFile = config.sops.secrets.dockerpasswd.path;
         };
-        image = "nocodb/nocodb:0.263.8";
+        image = "docker.io/nocodb/nocodb:0.263.8";
         volumes = [
             "/data/private/nocodb:/usr/app/data"
             "/run/postgresql:/run/postgresql"
