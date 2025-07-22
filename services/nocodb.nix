@@ -29,7 +29,6 @@ in {
             NC_DB = "pg://host.docker.internal:5432?u=nocodb";
             DB_URL = "nocodb?host=/run/postgresql";
             PORT = "${toString nocodbport}";
-            NC_DASHBOARD_URL = "/";
             NC_INVITE_ONLY_SIGNUP = "true";
             NC_DISABLE_TELE = "true";
         };
