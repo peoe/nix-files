@@ -26,8 +26,8 @@ in {
         log-driver = "journald";
         environment = {
             TZ = config.time.timeZone;
-            NC_DB = "pg://host.docker.internal:5432?u=nocodb";
-            DB_URL = "nocodb?host=/run/postgresql";
+            # NC_DB = "pg://host.docker.internal:5432?u=nocodb";
+            NC_DB = "nocodb?host=/run/postgresql";
             PORT = "${toString nocodbport}";
             NC_INVITE_ONLY_SIGNUP = "true";
             NC_DISABLE_TELE = "true";

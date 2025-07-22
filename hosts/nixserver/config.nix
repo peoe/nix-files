@@ -14,7 +14,7 @@
         ./../../services/adguard.nix
         ./../../services/grafana.nix
         ./../../services/mealie.nix
-        ./../../services/nocodb.nix
+        ./../../services/books.nix
         ./../../services/_acme.nix
         ./../../services/_nginx.nix
     ];
