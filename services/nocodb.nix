@@ -13,7 +13,7 @@ in {
         # };
     };
     virtualisation.containers.storage.settings.storage = {
-        rootless_storage_path = "/data/containers/storage";
+        graphroot = "/data/containers/storage";
     };
     virtualisation.oci-containers.backend = "podman";
 
@@ -31,7 +31,7 @@ in {
         ];
         ports = [
             "${toString nocodbport}:${toString nocodbport}"
-            "53:53/udp"
+            # "53:53/udp"
             # "53:53/tcp"
         ];
         log-driver = "journald";
