@@ -1,24 +1,15 @@
 { config, ... }: let
     nocodbport = 3003;
 in {
-    # networking.firewall.interfaces."podman+".allowedUDPPorts = [ 53 ];
-
     virtualisation.podman = {
         enable = true;
         autoPrune.enable = true;
         dockerCompat = true;
-        # defaultNetwork.settings = {
-        #     # Required for container networking to be able to use names.
-        #     dns_enabled = true;
-        # };
     };
-    # virtualisation.containers.storage.settings.storage = {
-    #     graphroot = "/data/containers/storage";
-    # };
     virtualisation.oci-containers.backend = "podman";
 
     virtualisation.oci-containers.containers."nocodb" = {
-        # autoStart = true;
+        autoStart = true;
         login = {
             registry = "docker.io";
             username = "peoe";
@@ -35,8 +26,12 @@ in {
         log-driver = "journald";
         environment = {
             TZ = config.time.timeZone;
+            NC_DB = "pg://host.docker.internal:5432?u=nocodb";
             DB_URL = "nocodb?host=/run/postgresql";
             PORT = "${toString nocodbport}";
+            NC_DASHBOARD_URL = "/";
+            NC_INVITE_ONLY_SIGNUP = "true";
+            NC_DISABLE_TELE = "true";
         };
     };
 
