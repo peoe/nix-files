@@ -35,7 +35,7 @@
                 useACMEHost = vars.base_url;
 
                 locations."/" = {
-                    proxyPass = "http://127.0.0.1:3003/dashboard";
+                    proxyPass = "http://127.0.0.1:3003";
                     proxyWebsockets = true;
                 };
             };
