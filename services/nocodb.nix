@@ -27,17 +27,13 @@ in {
             "/run/postgresql:/run/postgresql"
         ];
         ports = [
-            "8096:8096"
+            "${toString nocodbport}:${toString nocodbport}"
         ];
         log-driver = "journald";
         environment = {
             TZ = config.time.timeZone;
             DB_URL = "nocodb?host=/run/postgresql";
         };
-        extraOptions = [
-            "--add-host=host.docker.internal:host-gateway"
-            "--network=container:nocodb"
-        ];
     };
 
     fileSystems."/var/lib/containers/storage" = {
