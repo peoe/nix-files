@@ -1,5 +1,4 @@
 { config, ... }: let
-    ip = "127.0.0.1";
     nocodbport = 8080;
 in {
     networking.firewall.interfaces."podman+".allowedUDPPorts = [ 53 ];
@@ -29,8 +28,8 @@ in {
         ];
         ports = [
             "${toString nocodbport}:${toString nocodbport}"
-            "${ip}:53:53/tcp"
-            "${ip}:53:53/udp"
+            "53:53/udp"
+            "53:53/tcp"
         ];
         log-driver = "journald";
         environment = {
