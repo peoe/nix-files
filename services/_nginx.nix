@@ -39,6 +39,15 @@
                     proxyWebsockets = true;
                 };
             };
+            "jellyfin.${toString vars.base_url}" = {
+                forceSSL = true;
+                useACMEHost = vars.base_url;
+
+                locations."/" = {
+                    proxyPass = "http://127.0.0.1:8096";
+                    proxyWebsockets = true;
+                };
+            };
         };
     };
 }
