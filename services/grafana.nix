@@ -20,6 +20,8 @@ in {
                 http_port = grafanaport;
                 http_addr = "127.0.0.1";
             };
+
+            users.allow_sign_up = false;
         };
     };
 }
