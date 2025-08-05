@@ -15,7 +15,7 @@
         ./../../services/grafana.nix
         ./../../services/mealie.nix
         ./../../services/books.nix
-        ./../../services/jellyfin.nix
+        # ./../../services/jellyfin.nix
         ./../../services/_acme.nix
         ./../../services/_nginx.nix
     ];
