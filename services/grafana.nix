@@ -13,6 +13,7 @@ in {
         settings = {
             security = {
                 admin_user = vars.userName;
+                admin_password = "$__file{${config.sops.secrets.grafanapasswd.path}}";
             };
 
             server = {
