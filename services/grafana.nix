@@ -1,4 +1,4 @@
-{ vars, ... }: let
+{ config, vars, ... }: let
     grafanaport = 3001;
 in {
     networking = {
