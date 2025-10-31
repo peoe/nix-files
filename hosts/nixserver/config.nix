@@ -12,6 +12,7 @@
         ./../../packages/secrets.nix
 
         ./../../services/adguard.nix
+        ./../../services/prometheus.nix
         ./../../services/grafana.nix
         ./../../services/mealie.nix
         ./../../services/books.nix
