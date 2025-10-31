@@ -11,10 +11,6 @@ in {
         enable = true;
         
         settings = {
-            security = {
-                admin_user = vars.userName;
-            };
-
             server = {
                 domain = "graphs.${toString vars.base_url}";
                 http_port = grafanaport;
