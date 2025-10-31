@@ -19,5 +19,19 @@ in {
 
             users.allow_sign_up = false;
         };
+
+        provision = {
+            enable = true;
+
+            datasources.settings.datasources = [
+                {
+                    name = "Prometheus";
+                    type = "Prometheus";
+                    url = "http://${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
+                    isDefault = true;
+                    editable = false;
+                }
+            ];
+        };
     };
 }
