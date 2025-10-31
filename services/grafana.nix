@@ -52,7 +52,7 @@ in {
             server = {
                 http_listen_port = promtailport;
                 grpc_listen_port = 0;
-            }
+            };
             positions = {
                 filename = "/tmp/positions.yaml";
             };
