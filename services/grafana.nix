@@ -9,6 +9,9 @@ in {
         };
     };
 
+    # dir for grafana dashboard storage
+    environment.etc."grafana/dashboards/system_monitor.json".source = ./dashboards/system_monitor.json;
+
     services.grafana = {
         enable = true;
         
@@ -38,6 +41,13 @@ in {
                     type = "loki";
                     url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
                     editable = false;
+                }
+            ];
+
+            dashboards.setting.providers = [
+                {
+                    name = "Personal Dashboards";
+                    options.path = "/etc/grafana/dashboards";
                 }
             ];
         };
