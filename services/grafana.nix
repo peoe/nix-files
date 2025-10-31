@@ -44,7 +44,7 @@ in {
                 }
             ];
 
-            dashboards.setting.providers = [
+            dashboards.settings.providers = [
                 {
                     name = "Personal Dashboards";
                     options.path = "/etc/grafana/dashboards";
