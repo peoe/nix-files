@@ -26,8 +26,8 @@ in {
             datasources.settings.datasources = [
                 {
                     name = "Prometheus";
-                    type = "Prometheus";
-                    url = "http://${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
+                    type = "prometheus";
+                    url = "http://127.0.0.1:${toString config.services.prometheus.port}";
                     isDefault = true;
                     editable = false;
                 }
