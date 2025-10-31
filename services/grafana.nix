@@ -87,7 +87,6 @@ in {
                     active_index_directory = "/var/lib/loki/tsdb-shipper-active";
                     cache_location = "/var/lib/loki/tsdb-shipper-cache";
                     cache_ttl = "24h";
-                    shared_store = "filesystem";
                 };
 
                 filesystem = {
